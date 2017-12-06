@@ -16,7 +16,7 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#2d8cf0' },
   /*
   ** Build configuration
   */
@@ -42,18 +42,23 @@ module.exports = {
   /**
    * Plugin Config
    */
-  plugins: ['@/plugins/iview'],
+  plugins: ['@/plugins/iview', '@/plugins/filters'],
   /**
    * Global CSS
    */
   css: [
-    'iview/dist/styles/iview.css'
+    'iview/dist/styles/iview.css',
+    'normalize.css',
+    '~/assets/global.css'
   ],
   /**
    * Route Config
    */
   router: {
     linkActiveClass: '',
-    middleware: ['route']
+    middleware: ['route'],
+    scrollBehavior: function (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
   }
 }

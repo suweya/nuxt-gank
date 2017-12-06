@@ -1,8 +1,10 @@
 <template>
     <div class="layout">
         <Affix>
-            <Menu mode="horizontal" theme="light" :active-name="activeName" @on-select="select">
-                <div class="layout-logo"></div>
+            <Menu mode="horizontal" theme="light" @on-select="select">
+                <div class="layout-logo">
+                    <img width="100px" height="30px" src="http://gank.io/static/images/special/work.png" alt="收心工作啦">
+                </div>
                 <div class="layout-nav">
                     <nuxt-link to="/category/fe" class="nav-item">
                         <Icon type="ios-navigate"></Icon>
@@ -16,27 +18,20 @@
                         <Icon type="ios-analytics"></Icon>
                         iOS
                     </nuxt-link>
-                    <nuxt-link to="/category/be" class="nav-item">
+                    <nuxt-link to="/category/all" class="nav-item">
                         <Icon type="ios-paper"></Icon>
-                        后端
+                        ALL
                     </nuxt-link>
                 </div>                                                  
             </Menu>
         </Affix>
-        <div class="layout-breadcrumb">
-            <Breadcrumb>
-                <BreadcrumbItem href="#">Home</BreadcrumbItem>
-                <BreadcrumbItem href="#">Projects</BreadcrumbItem>
-                <BreadcrumbItem>iView</BreadcrumbItem>
-            </Breadcrumb>
-        </div>
         <div class="layout-content">
             <div class="layout-content-main">
                 <nuxt/>
             </div>
         </div>
         <div class="layout-copy">
-            2011-2016 &copy; TalkingData
+            2017 &copy; GANK.IO
         </div>
     </div>
 </template>
@@ -76,12 +71,14 @@ export default {
 .layout-logo {
   width: 100px;
   height: 30px;
-  background: #5b6270;
+  /* background: #5b6270; */
   border-radius: 3px;
   float: left;
   position: relative;
   top: 15px;
   left: 20px;
+  line-height: 30px;
+  overflow: hidden;
 }
 .layout-nav {
   width: 420px;
