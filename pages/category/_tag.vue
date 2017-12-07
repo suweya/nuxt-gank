@@ -27,6 +27,7 @@
   import { convertCategory, getDataURLByCategory } from '@/utils/common'
 
   export default {
+    name: `TAG${new Date().getTime()}`,
     async asyncData({ params, error, isClient, isServer }) {
       console.log(
         'asyncData start ....... isClient = ' +
@@ -56,7 +57,8 @@
         page: 1,
         results: null,
         error: false,
-        loading: false
+        loading: false,
+        mounted: false
       }
     },
     methods: {
@@ -65,7 +67,8 @@
         const scrollTop = body.scrollTop
         const clientHeight = body.clientHeight
         const scrollHeight = body.scrollHeight
-        if (!this.loading && scrollTop + clientHeight >= (scrollHeight - 300)) {
+        if (this.mounted && !this.loading && scrollTop + clientHeight >= (scrollHeight - 300)) {
+          console.log('loading ', this)
           this.$data.loading = true
           this.fetchData()
         }
@@ -87,13 +90,23 @@
           this.loading = false
           this.page = this.page + 1
           this.results = [...this.results, ...response.data.results]
+
+          setTimeout(() => {
+            console.log('PAGE DATA ', this.$data)
+          }, 1000)
         }, 5000)
       }
+    },
+    beforeMount() {
+      this.mounted = true
+      console.log('beforeMount ', this.$data)
     },
     mounted() {
       window.addEventListener('scroll', this.handleScroll, true)
     },
     beforeDestroy() {
+      this.mounted = false
+      console.log('beforeDestory===================================')
       window.removeEventListener('scroll', this.handleScroll, false)
     }
   }
