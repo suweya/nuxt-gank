@@ -67,7 +67,7 @@
         const scrollTop = body.scrollTop
         const clientHeight = body.clientHeight
         const scrollHeight = body.scrollHeight
-        if (this.mounted && !this.loading && scrollTop + clientHeight >= (scrollHeight - 300)) {
+        if (!this.loading && scrollTop + clientHeight >= (scrollHeight - 300)) {
           console.log('loading ', this)
           this.$data.loading = true
           this.fetchData()
@@ -102,12 +102,12 @@
       console.log('beforeMount ', this.$data)
     },
     mounted() {
-      window.addEventListener('scroll', this.handleScroll, true)
+      window.addEventListener('scroll', this.handleScroll)
     },
     beforeDestroy() {
       this.mounted = false
       console.log('beforeDestory===================================')
-      window.removeEventListener('scroll', this.handleScroll, false)
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 </script>
