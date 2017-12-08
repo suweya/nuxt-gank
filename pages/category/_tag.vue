@@ -15,7 +15,7 @@
     <div v-else-if="error">
       Error...
     </div>
-    <BackTop></BackTop>
+    <BackTop v-if="isAndroid" @on-click="backTop()"></BackTop>
     <div class="spin-container" v-show="loading">
       <Spin fix></Spin>
     </div>
@@ -50,6 +50,9 @@
     computed: {
       tag: function () {
         return this.$route.params.tag
+      },
+      isAndroid: function() {
+        return true
       }
     },
     data() {
@@ -64,7 +67,8 @@
     methods: {
       handleScroll() {
         const body = document.body
-        const scrollTop = body.scrollTop
+        // 兼容IE
+        const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop
         const clientHeight = body.clientHeight
         const scrollHeight = body.scrollHeight
         if (!this.loading && scrollTop + clientHeight >= (scrollHeight - 300)) {
@@ -95,6 +99,9 @@
             console.log('PAGE DATA ', this.$data)
           }, 1000)
         }, 5000)
+      },
+      backTop() {
+        document.body.scrollTop = 0
       }
     },
     beforeMount() {
@@ -103,6 +110,9 @@
     },
     mounted() {
       window.addEventListener('scroll', this.handleScroll)
+      setTimeout(() => {
+        document.body.scrollTop = 0
+      }, 0)
     },
     beforeDestroy() {
       this.mounted = false
