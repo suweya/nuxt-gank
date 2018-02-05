@@ -1,6 +1,6 @@
 # nuxt-gank
 
-> Nuxt.js project
+> [Gank.io](http://gank.io/) Nuxt.js 版本
 
 ## Build Setup
 
