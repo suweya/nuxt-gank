@@ -26,15 +26,15 @@ $ npm run generate
 ## Version
 
 - 0.1.5
- - Response Toolbar
+  - Response Toolbar
 - 0.1.3
- - code optimization
- - Timeline Page
+  - code optimization
+  - Timeline Page
 - 0.1.2
- - Fixed addEventListener removeEventListener
+  - Fixed addEventListener removeEventListener
 - 0.1.1
- - Fixed: tab切换scroll事件错乱问题
+  - Fixed: tab切换scroll事件错乱问题
 - 0.1.0
- - Category Page
+  - Category Page
 - 0.0.1
- - init project
+  - init project
