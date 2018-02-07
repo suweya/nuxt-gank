@@ -73,11 +73,29 @@ export const formateImgSize = (url, size) => {
   return `${url}?imageView2/2/w/${size}`
 }
 
+export const formateTag = (tag) => {
+  switch (tag) {
+    case 'fe':
+      return '前端'
+    case 'android':
+      return 'Android'
+    case 'ios':
+      return 'iOS'
+    case 'all':
+      return 'ALL'
+    case 'timeline':
+      return 'Timeline'
+    default:
+      return tag
+  }
+}
+
 let filters = {
   formatDate,
   cutString,
   formatArchive,
-  formateImgSize
+  formateImgSize,
+  formateTag
 }
 
 Object.keys(filters).forEach(key => {
