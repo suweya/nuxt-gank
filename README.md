@@ -22,6 +22,7 @@ $ npm run generate
 ## TODO
 
 - [ ] Search Page
+- [ ] Test
 
 ## Version
 
