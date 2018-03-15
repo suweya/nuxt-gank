@@ -5,8 +5,8 @@
         <a :href="item.url" target="_blank">{{ item.desc }}</a>
         <p>{{ item.who }}</p>
         <p>{{ item.publishedAt | formatDate('yyyy-MM-dd HH:mm:ss') }}</p>
-        <div class="img-content" v-if="item.images">
-          <a :href="img" target="_blank" v-for="(img, imgIndex) in item.images" :key="imgIndex">
+        <div :id="'gallery-' + index" class="img-content" v-if="item.images" @click="showGallery('gallery-' + index)">
+          <a v-for="(img, imgIndex) in item.images" :key="imgIndex">
             <img :src="img | formateImgSize(240)" alt="">
           </a>
         </div>
@@ -25,6 +25,8 @@
 <script>
 import axios from 'axios'
 import { convertCategory, getDataURLByCategory } from '@/utils/common'
+// import Viewer from 'viewerjs'
+import 'viewerjs/dist/viewer.css'
 
 export default {
   name: `TAG${new Date().getTime()}`,
@@ -92,6 +94,20 @@ export default {
     },
     backTop() {
       document.body.scrollTop = 0
+    },
+    showGallery(id) {
+      const element = document.getElementById(id)
+      // console.log(element)
+      const Viewer = require('viewerjs').default
+      // console.log(Viewer)
+      /* eslint-disable */
+      let viewer = new Viewer(element, {
+        hidden: function() {
+          viewer.destroy()
+        }
+      })
+      viewer.show()
+      /* eslint-enable */
     }
   },
   beforeMount() {

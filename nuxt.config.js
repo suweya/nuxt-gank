@@ -37,7 +37,7 @@ module.exports = {
     /**
      * vendor config
      */
-    vendor: ['iview', 'axios']
+    vendor: ['iview', 'axios', 'viewerjs']
   },
   /**
    * Plugin Config

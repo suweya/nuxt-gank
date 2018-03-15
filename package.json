@@ -16,7 +16,8 @@
     "axios": "^0.17.1",
     "iview": "^2.7.3",
     "normalize.css": "^7.0.0",
-    "nuxt": "^1.0.0-rc11"
+    "nuxt": "^1.0.0-rc11",
+    "viewerjs": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
