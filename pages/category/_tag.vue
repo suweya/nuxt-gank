@@ -140,6 +140,7 @@ export default {
 }
 .img-content img {
   max-width: 100%;
+  max-height: 350px;
 }
 
 .footer {
