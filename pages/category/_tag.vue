@@ -12,6 +12,7 @@
         </div>
       </Card>
     </div>
+    <h2 class="footer" v-if="!hasmore">--- The End ---</h2>
     <div v-else-if="error">
       Error...
     </div>
@@ -24,7 +25,7 @@
 
 <script>
 import axios from 'axios'
-import { convertCategory, getDataURLByCategory } from '@/utils/common'
+import { convertCategory, getDataURLByCategory, PAGE_COUNT } from '@/utils/common'
 // import Viewer from 'viewerjs'
 import 'viewerjs/dist/viewer.css'
 
@@ -55,7 +56,8 @@ export default {
       page: 1,
       results: null,
       error: false,
-      loading: false
+      loading: false,
+      hasmore: true
     }
   },
   methods: {
@@ -67,7 +69,7 @@ export default {
         document.body.scrollTop
       const clientHeight = body.clientHeight
       const scrollHeight = body.scrollHeight
-      if (!this.loading && scrollTop + clientHeight >= scrollHeight - 300) {
+      if (this.hasmore && !this.loading && scrollTop + clientHeight >= scrollHeight - 300) {
         console.log(`load more data current compoent is `, this)
         this.$data.loading = true
         this.fetchData()
@@ -89,7 +91,12 @@ export default {
       }
 
       this.loading = false
-      this.page = this.page + 1
+      const resultSize = response.data.results.length
+      if (resultSize < PAGE_COUNT) {
+        this.hasmore = false
+      } else {
+        this.page = this.page + 1
+      }
       this.results = [...this.results, ...response.data.results]
     },
     backTop() {
@@ -133,5 +140,9 @@ export default {
 }
 .img-content img {
   max-width: 100%;
+}
+
+.footer {
+  text-align: center;
 }
 </style>

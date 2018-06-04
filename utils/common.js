@@ -11,7 +11,7 @@ export const convertCategory = tag => {
   }
 }
 
-const PAGE_COUNT = 20
+export const PAGE_COUNT = 20
 
 export const getDataURLByCategory = (category, page) => {
   return `http://gank.io/api/data/${category}/${PAGE_COUNT}/${page}`
